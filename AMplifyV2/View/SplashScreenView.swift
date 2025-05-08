@@ -8,8 +8,33 @@
 import SwiftUI
 
 struct SplashScreenView: View {
+    @State private var isSplashScreenActive: Bool = true
+    @StateObject private var homeViewModel = HomeViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        if isSplashScreenActive {
+            ZStack {
+                LinearGradient.SplashBG
+                
+                Image("LOGO")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 250, height: 250)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .ignoresSafeArea(edges: .all)
+            .onAppear{
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2){
+                    withAnimation {
+                        isSplashScreenActive = false
+                    }
+                }
+            }
+        }
+        else {
+            HomeView()
+                .environmentObject(homeViewModel)
+        }
     }
 }
 
