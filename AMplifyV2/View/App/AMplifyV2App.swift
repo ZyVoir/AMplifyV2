@@ -9,13 +9,13 @@ import SwiftUI
 
 @main
 struct AMplifyV2App: App {
-    @StateObject private var locationManager : LocationManager = LocationManager()
+//    @StateObject private var locationManager : LocationManager = LocationManager()
     @StateObject private var notificationManager : NotificationManager = NotificationManager()
     
     var body: some Scene {
         WindowGroup {
             SplashScreenView()
-                .environmentObject(locationManager)
+//                .environmentObject(locationManager)
                 .environmentObject(notificationManager)
         }
     }

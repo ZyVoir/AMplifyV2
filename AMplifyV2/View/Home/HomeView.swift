@@ -40,13 +40,13 @@ struct HomeView: View {
                 Text("Your Daily Quest 🎯")
                     .font(.system(size: 22, weight: .bold))
                 
-                Picker("Pick", selection: $viewModel.menuSelectedIndex) {
+                Picker("Pick", selection: $viewModel.menuState) {
                     segmentIcon(icon: Icons.alarm.rawValue,size: 16)
-                        .tag(0)
+                        .tag(homeViewSelectionState.alarm)
                     segmentIcon(icon: Icons.morningRoutine.rawValue)
-                        .tag(1)
+                        .tag(homeViewSelectionState.morningRoutine)
                     segmentIcon(icon: Icons.arriveAtADA.rawValue)
-                        .tag(2)
+                        .tag(homeViewSelectionState.arriveAtADA)
                 }
                 .frame(height: 43)
                 .pickerStyle(.segmented)

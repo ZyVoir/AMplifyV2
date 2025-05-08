@@ -9,10 +9,34 @@ import Foundation
 import Observation
 import SwiftUI
 
-enum homeViewSelectionState : Int {
-    case alarm = 0
-    case morningRoutine = 1
-    case arriveAtADA = 2
+enum homeViewSelectionState {
+    case alarm
+    case morningRoutine
+    case arriveAtADA
+    
+    var selectedIndex : Int {
+        switch self {
+        case .alarm:
+            return 0
+        case .morningRoutine:
+            return 1
+        case .arriveAtADA:
+            return 2
+        }
+    }
+    
+    init(index : Int) {
+        switch index {
+        case 0:
+            self = .alarm
+        case 1:
+            self = .morningRoutine
+        case 2:
+            self = .arriveAtADA
+        default:
+            self = .alarm
+        }
+    }
 }
 
 final class HomeViewModel : ObservableObject {
@@ -41,14 +65,15 @@ final class HomeViewModel : ObservableObject {
         }
     }
     
-    @Published var menuState : homeViewSelectionState = .arriveAtADA
-    
-    @Published var menuSelectedIndex : Int {
+    @Published var menuState : homeViewSelectionState = .alarm {
         didSet {
-            UserDefaults.standard.set(menuSelectedIndex, forKey: "menuSelectedIndex")
-            withAnimation {
-                menuState = homeViewSelectionState(rawValue: menuSelectedIndex)!
-            }
+            UserDefaults.standard.set(menuState.selectedIndex, forKey: "menuSelectedIndex")
+        }
+    }
+   
+    func updateState(state : homeViewSelectionState){
+        withAnimation {
+            self.menuState = state
         }
     }
     
@@ -57,8 +82,12 @@ final class HomeViewModel : ObservableObject {
         self.streakCount = UserDefaults.standard.integer(forKey: "streakCount")
         self.completedQuest = UserDefaults.standard.integer(forKey: "completedQuest")
         self.maxCompletedQuest = UserDefaults.standard.integer(forKey: "maxCompletedQuest")
-        self.menuSelectedIndex = UserDefaults.standard.integer(forKey: "menuSelectedIndex")
+        self.menuState = homeViewSelectionState(index: UserDefaults.standard.integer(forKey: "menuSelectedIndex"))
     }
     
     static let gridColumns = [GridItem(.flexible(minimum: 0, maximum: 150)),GridItem(.flexible())]
+}
+
+private extension HomeViewModel {
+   
 }

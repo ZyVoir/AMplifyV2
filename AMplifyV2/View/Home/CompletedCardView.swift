@@ -21,7 +21,7 @@ struct CompletedCardView: View {
                     .frame(width: 40, height: 40)
                     .foregroundStyle(Color.Primary)
                 
-                Text("\(Text("\(viewModel.completedQuest)").foregroundStyle(Color.Primary))  \(Text("/ \(viewModel.maxCompletedQuest)").foregroundStyle(Color.black))")
+                Text("\(Text("\(viewModel.completedQuest)").foregroundStyle(Color.Primary)) \(Text("/ \(viewModel.maxCompletedQuest)").foregroundStyle(Color.black))")
                     .lineLimit(1)
                     .font(.system(size: 36, weight: .medium))
                     .foregroundStyle(viewModel.isTodayDoneStreak ? Color.accentOrange : Color.accentGrey)
