@@ -10,7 +10,6 @@ import CoreLocation
 
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
-    static let shared = LocationManager()
     
     private let manager = CLLocationManager()
     @Published var userLocation: CLLocationCoordinate2D?
@@ -20,7 +19,17 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     @Published var authorizationStatus: CLAuthorizationStatus = .notDetermined
     
+    var formattedDistanceFromAcademy : String {
+        if distanceFromAcademy >= 1 {
+                return String(format: "%.0f", distanceFromAcademy)
+            } else {
+                return String(format: "%.2f", distanceFromAcademy)
+            }
+    }
     
+    var clockInEnabled : Bool {
+        return distanceFromAcademy <= 0.15
+    }
     
     override init() {
         super.init()
@@ -36,6 +45,10 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func startListenForLocation() {
         manager.startUpdatingLocation()
+    }
+    
+    func startListenForSignificantLocationChanges() {
+        manager.startMonitoringSignificantLocationChanges()
     }
     
     func stopUpdatingLocation() {
@@ -54,6 +67,8 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             print("Updating Location : \(self.distanceFromAcademy)")
         }
     }
+   
+    
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         let status = manager.authorizationStatus

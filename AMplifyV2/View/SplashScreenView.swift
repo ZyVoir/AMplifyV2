@@ -24,7 +24,7 @@ struct SplashScreenView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .ignoresSafeArea(edges: .all)
             .onAppear{
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2){
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1){
                     withAnimation {
                         isSplashScreenActive = false
                     }

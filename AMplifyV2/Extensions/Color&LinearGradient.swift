@@ -44,6 +44,11 @@ extension Color {
     
     static let GreyBG = Color(hex: "#F6F6F6")
     
+    static let sessionMorningTop = Color(hex: "#FFA100")
+    static let sessionMorningBottom = Color(hex: "#FFE600")
+    
+    static let sessionAfternoonTop = Color(hex: "#FF3838")
+    static let sessionAfternoonBottom = Color(hex: "#FF9C31")
 }
 
 extension LinearGradient {
@@ -55,4 +60,10 @@ extension LinearGradient {
     static let StreakColor : LinearGradient = .init(colors: [.accentDarkOrange, .accentOrange], startPoint: .topLeading, endPoint: .bottomTrailing)
     
     static let greyBG : LinearGradient = .init(colors: [.accentGrey], startPoint: .topLeading, endPoint: .bottomTrailing)
+    
+    static let morningSession : LinearGradient = .init(colors: [.sessionMorningTop, .sessionMorningBottom], startPoint: .topLeading, endPoint: .bottomTrailing)
+    
+    static let afternoonSession : LinearGradient = .init(colors: [.sessionAfternoonTop, .sessionAfternoonBottom], startPoint: .topLeading, endPoint: .bottomTrailing)
+    
+    static let white : LinearGradient = .init(gradient: Gradient(colors: [.white]), startPoint: .topLeading, endPoint: .bottomTrailing)
 }

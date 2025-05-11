@@ -32,7 +32,7 @@ struct StreakCardView: View {
                 .font(.system(size: 20, weight: .regular))
           
         }
-        .padding(.horizontal, 36)
+        .padding(.horizontal, 20)
         .padding(.vertical, 17)
         .frame(maxWidth: .infinity)
         .background(RoundedRectangle(cornerRadius: 8).fill(Color.white).stroke(LinearGradient.StreakColor, lineWidth: 2))

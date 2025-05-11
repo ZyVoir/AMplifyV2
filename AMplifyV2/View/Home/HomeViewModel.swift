@@ -41,6 +41,9 @@ enum homeViewSelectionState {
 
 final class HomeViewModel : ObservableObject {
     
+    
+    @Published var path : NavigationPath = NavigationPath()
+
     @Published var isTodayDoneStreak : Bool {
         didSet {
             UserDefaults.standard.set(isTodayDoneStreak, forKey: "isTodayDoneStreak")
@@ -61,7 +64,7 @@ final class HomeViewModel : ObservableObject {
     
     @Published var maxCompletedQuest : Int {
         didSet {
-            UserDefaults.standard.set(completedQuest, forKey: "maxCompletedQuest")
+            UserDefaults.standard.set(maxCompletedQuest, forKey: "maxCompletedQuest")
         }
     }
     
@@ -71,9 +74,22 @@ final class HomeViewModel : ObservableObject {
         }
     }
    
+    var isCompletedQuest : Bool {
+        return completedQuest == maxCompletedQuest
+    }
+    
     func updateState(state : homeViewSelectionState){
         withAnimation {
             self.menuState = state
+        }
+    }
+    
+    func streakCheckAndAdd(){
+        if !isTodayDoneStreak && isCompletedQuest {
+            withAnimation {
+                streakCount += 1
+                isTodayDoneStreak = true
+            }
         }
     }
     
@@ -85,7 +101,7 @@ final class HomeViewModel : ObservableObject {
         self.menuState = homeViewSelectionState(index: UserDefaults.standard.integer(forKey: "menuSelectedIndex"))
     }
     
-    static let gridColumns = [GridItem(.flexible(minimum: 0, maximum: 150)),GridItem(.flexible())]
+    static let gridColumns = [GridItem(.flexible(minimum: 0, maximum: 170)),GridItem(.flexible())]
 }
 
 private extension HomeViewModel {

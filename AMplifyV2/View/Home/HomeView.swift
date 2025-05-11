@@ -9,8 +9,11 @@ import SwiftUI
 
 
 struct HomeView: View {
+    
+    
     @EnvironmentObject var viewModel : HomeViewModel
-   
+    @EnvironmentObject var notificationManager : NotificationManager
+    
     // Initialize sub view's view model
     @StateObject private var alarmPAAViewModel : AlarmPAAViewModel = AlarmPAAViewModel()
     
@@ -25,43 +28,54 @@ struct HomeView: View {
     }
     
     var body: some View {
-        ZStack {
-            Color.GreyBG.edgesIgnoringSafeArea(.all)
-            VStack (spacing: 22) {
-                HomeHeader()
-                    .padding(.bottom, 5)
-                
-                LazyVGrid(columns: HomeViewModel.gridColumns, spacing: 10) {
-                    StreakCardView()
-                    CompletedCardView()
+        NavigationStack (path: $viewModel.path) {
+            ZStack {
+                Color.GreyBG.edgesIgnoringSafeArea(.all)
+                VStack (spacing: 22) {
+                    HomeHeader()
+                        .padding(.bottom, 5)
+                    
+                    LazyVGrid(columns: HomeViewModel.gridColumns, spacing: 10) {
+                        StreakCardView()
+                        CompletedCardView()
+                    }
+                    .padding()
+                    
+                    Text("Your Daily Quest 🎯")
+                        .font(.system(size: 22, weight: .bold))
+                    
+                    Picker("Pick", selection: $viewModel.menuState) {
+                        segmentIcon(icon: Icons.alarm.rawValue,size: 16)
+                            .tag(homeViewSelectionState.alarm)
+                        segmentIcon(icon: Icons.morningRoutine.rawValue)
+                            .tag(homeViewSelectionState.morningRoutine)
+                        segmentIcon(icon: Icons.arriveAtADA.rawValue)
+                            .tag(homeViewSelectionState.arriveAtADA)
+                    }
+                    .frame(height: 43)
+                    .pickerStyle(.segmented)
+                    .padding(.horizontal)
+                    
+                    switch viewModel.menuState {
+                    case .alarm:
+                        AlarmPAAView()
+                            .environmentObject(alarmPAAViewModel)
+                    case .morningRoutine:
+                        MorningRoutineView()
+                            .environmentObject(morningRoutineViewModel)
+                    case .arriveAtADA:
+                        ArriveAtADAView()
+                            .environmentObject(arriveAtADAViewModel)
+                    }
                 }
-                .padding()
-                
-                Text("Your Daily Quest 🎯")
-                    .font(.system(size: 22, weight: .bold))
-                
-                Picker("Pick", selection: $viewModel.menuState) {
-                    segmentIcon(icon: Icons.alarm.rawValue,size: 16)
-                        .tag(homeViewSelectionState.alarm)
-                    segmentIcon(icon: Icons.morningRoutine.rawValue)
-                        .tag(homeViewSelectionState.morningRoutine)
-                    segmentIcon(icon: Icons.arriveAtADA.rawValue)
-                        .tag(homeViewSelectionState.arriveAtADA)
-                }
-                .frame(height: 43)
-                .pickerStyle(.segmented)
-                .padding(.horizontal)
-                
-                switch viewModel.menuState {
-                case .alarm:
-                    AlarmPAAView()
-                        .environmentObject(alarmPAAViewModel)
-                case .morningRoutine:
-                    MorningRoutineView()
-                        .environmentObject(morningRoutineViewModel)
-                case .arriveAtADA:
-                    ArriveAtADAView()
+            }
+            .navigationDestination(for: String.self) { value in
+                switch value {
+                case "Config":
+                    AdminView()
                         .environmentObject(arriveAtADAViewModel)
+                default:
+                    Text("Unknown Destination \(value)")
                 }
             }
         }
@@ -82,6 +96,9 @@ struct segmentIcon: View {
 }
 
 struct HomeHeader: View {
+    
+    @EnvironmentObject var viewModel: HomeViewModel
+    
     var body: some View {
         HStack {
             Text("AMplify your day! 🌤️")
@@ -89,9 +106,9 @@ struct HomeHeader: View {
                 .foregroundStyle(.white)
             Spacer()
             Button {
-                
+                viewModel.path.append("Config")
             } label : {
-                Image(systemName: "questionmark.circle")
+                Image(systemName: Icons.onboarding.rawValue)
                     .resizable()
                     .scaledToFill()
                     .frame(width: 26, height: 26)
@@ -106,6 +123,8 @@ struct HomeHeader: View {
 #Preview {
     HomeView()
         .environmentObject(HomeViewModel())
+        .environmentObject(NotificationManager())
+        .environmentObject(LocationManager())
 }
 
 extension UISegmentedControl {
