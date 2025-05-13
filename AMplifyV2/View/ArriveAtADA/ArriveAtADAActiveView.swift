@@ -51,7 +51,7 @@ struct CircularTimerView : View {
 
 struct locationTextView : View {
     @EnvironmentObject var locationManager : LocationManager
-    
+    @EnvironmentObject var viewModel : ArriveAtADAViewModel
     var body : some View {
         VStack (spacing: 0) {
             Text("\(locationManager.formattedDistanceFromAcademy) Km")
@@ -59,6 +59,10 @@ struct locationTextView : View {
             
             Text("From the academy!")
                 .font(.system(size: 16, weight: .regular))
+        }
+        .onFirstAppear {
+            print("test")
+            viewModel.startActivity(locationManager: locationManager)
         }
     }
 }
@@ -85,6 +89,7 @@ struct ClockInButtonView : View {
         }
         .alert(viewModel.alertState.title,isPresented: $viewModel.isShowAlert) {
             Button("Clock In"){
+                viewModel.endActivity(locationManager: locationManager)
                 viewModel.redirectToCiCo()
             }
         } message: {

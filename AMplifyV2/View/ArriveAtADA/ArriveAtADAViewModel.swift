@@ -172,7 +172,7 @@ final class ArriveAtADAViewModel : ObservableObject {
     
     // activeView
     @Published var timeRemaining: TimeInterval? = 0
-    var totalTime: TimeInterval? = 0
+    private var totalTime: TimeInterval?
     private var timer: Timer?
     
     @Published var timerCountDown : ClosedRange<Date>?
@@ -228,6 +228,17 @@ final class ArriveAtADAViewModel : ObservableObject {
         
         // Update state to active
         updateState(state: .active)
+    }
+    
+    func endActivity(locationManager : LocationManager){
+        locationManager.stopUpdatingLocation()
+        
+        timer = nil
+        timerCountDown = nil
+        timeRemaining = nil
+        totalTime = nil
+        
+        updateState(state: .completed)
     }
     
     func onSetupSheetSaved(locationManager : LocationManager, homeViewModel : HomeViewModel?, notificationManager : NotificationManager) {

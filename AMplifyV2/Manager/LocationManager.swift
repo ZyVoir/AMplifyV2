@@ -14,7 +14,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     private let manager = CLLocationManager()
     @Published var userLocation: CLLocationCoordinate2D?
     
-    let appleDevAcademyLocation = CLLocation(latitude: -6.301976713655676, longitude: 106.65306645086578)
+    static let appleDevAcademyLocation = CLLocation(latitude: -6.301976713655676, longitude: 106.65306645086578)
     @Published var distanceFromAcademy : Double = Double.infinity
     
     @Published var authorizationStatus: CLAuthorizationStatus = .notDetermined
@@ -62,7 +62,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             self.userLocation = location.coordinate
             self.authorizationStatus = manager.authorizationStatus
             
-            self.distanceFromAcademy = location.distance(from: self.appleDevAcademyLocation)/1000
+            self.distanceFromAcademy = location.distance(from: LocationManager.appleDevAcademyLocation)/1000
             
             print("Updating Location : \(self.distanceFromAcademy)")
         }

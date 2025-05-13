@@ -97,7 +97,8 @@ class NotificationManager : ObservableObject {
     }
     
     func shceduleNotificationForLocationADA(notificationType : NotificationType){
-        let academyLocation = CLLocationCoordinate2D(latitude: -6.301976713655676, longitude: 106.65306645086578)
+        let academyLocation = CLLocationCoordinate2D(latitude: LocationManager.appleDevAcademyLocation.coordinate.latitude, longitude: LocationManager.appleDevAcademyLocation.coordinate.longitude)
+        
         let region = CLCircularRegion(center: academyLocation, radius: 150, identifier: "academyLocation")
         region.notifyOnEntry = true
         region.notifyOnExit = false
