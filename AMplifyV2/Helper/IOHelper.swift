@@ -29,5 +29,14 @@ class IOHelper {
         
         return calendar.date(from: dateComponents) ?? Date()
     }
+    
+    func formattedDistance(distance : Double) -> String {
+        if (distance >= 1){
+            return String(format: "%.0f", distance)
+        }
+        else {
+           return String(format: "%.2f", distance)
+        }
+    }
 }
 

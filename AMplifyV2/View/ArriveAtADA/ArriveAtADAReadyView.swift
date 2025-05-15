@@ -48,7 +48,9 @@ struct arriveAtADAReadyView : View {
             VStack (spacing: 10){
                 Button {
                     // TODO: Start an activity with widget extension (activityKit)
-                    viewModel.startActivity(locationManager: locationManager)
+                    viewModel.startTracking(locationManager: locationManager)
+                    viewModel.startActivity(distance: locationManager.distanceFromAcademy)
+                
                 } label: {
                     Text("Start Activity")
                         .font(.system(size: 16, weight: .semibold))

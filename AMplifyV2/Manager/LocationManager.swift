@@ -15,21 +15,19 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var userLocation: CLLocationCoordinate2D?
     
     static let appleDevAcademyLocation = CLLocation(latitude: -6.301976713655676, longitude: 106.65306645086578)
-    @Published var distanceFromAcademy : Double = Double.infinity
+    @Published var distanceFromAcademy : Double = 200
     
     @Published var authorizationStatus: CLAuthorizationStatus = .notDetermined
     
     var formattedDistanceFromAcademy : String {
-        if distanceFromAcademy >= 1 {
-                return String(format: "%.0f", distanceFromAcademy)
-            } else {
-                return String(format: "%.2f", distanceFromAcademy)
-            }
+        return IOHelper.shared.formattedDistance(distance: distanceFromAcademy)
     }
     
     var clockInEnabled : Bool {
         return distanceFromAcademy <= 0.15
     }
+    
+    var significantLocation : Int = Int.max
     
     override init() {
         super.init()
@@ -63,6 +61,16 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             self.authorizationStatus = manager.authorizationStatus
             
             self.distanceFromAcademy = location.distance(from: LocationManager.appleDevAcademyLocation)/1000
+            if self.distanceFromAcademy > 1 && self.significantLocation > Int(self.distanceFromAcademy) {
+                // update live activity once every 1KM
+                LiveActivityManager.shared.updateActivity(distance: self.distanceFromAcademy)
+                self.significantLocation = Int(self.distanceFromAcademy)
+                print("test \(self.significantLocation)")
+            }
+            else if self.distanceFromAcademy < 1 {
+                // once below 1 KM , update every time location changes
+                LiveActivityManager.shared.updateActivity(distance: self.distanceFromAcademy)
+            }
             
             print("Updating Location : \(self.distanceFromAcademy)")
         }

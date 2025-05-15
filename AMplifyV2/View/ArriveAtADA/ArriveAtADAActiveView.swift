@@ -62,7 +62,7 @@ struct locationTextView : View {
         }
         .onFirstAppear {
             print("test")
-            viewModel.startActivity(locationManager: locationManager)
+            viewModel.startTracking(locationManager: locationManager)
         }
     }
 }
