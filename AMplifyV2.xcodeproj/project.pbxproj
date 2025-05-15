@@ -6,8 +6,42 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		EBD433412DD3954A00D19A3D /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBD433402DD3954A00D19A3D /* WidgetKit.framework */; };
+		EBD433432DD3954A00D19A3D /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBD433422DD3954A00D19A3D /* SwiftUI.framework */; };
+		EBD433522DD3954B00D19A3D /* ArriveAtADAExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = EBD4333E2DD3954A00D19A3D /* ArriveAtADAExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EBD433502DD3954B00D19A3D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EB4614262DC913EB005582D9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EBD4333D2DD3954A00D19A3D;
+			remoteInfo = ArriveAtADAExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EBD433572DD3954B00D19A3D /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				EBD433522DD3954B00D19A3D /* ArriveAtADAExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		EB46142E2DC913EB005582D9 /* AMplifyV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AMplifyV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBD4333E2DD3954A00D19A3D /* ArriveAtADAExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ArriveAtADAExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBD433402DD3954A00D19A3D /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		EBD433422DD3954A00D19A3D /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		EBD4335F2DD39BA800D19A3D /* ActivityKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActivityKit.framework; path = System/Library/Frameworks/ActivityKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -18,6 +52,24 @@
 			);
 			target = EB46142D2DC913EB005582D9 /* AMplifyV2 */;
 		};
+		EBD433562DD3954B00D19A3D /* Exceptions for "ArriveAtADA" folder in "ArriveAtADAExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = EBD4333D2DD3954A00D19A3D /* ArriveAtADAExtension */;
+		};
+		EBD4335B2DD396C200D19A3D /* Exceptions for "AMplifyV2" folder in "ArriveAtADAExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Assets.xcassets,
+				"Extensions/Color&LinearGradient.swift",
+				Helper/IOHelper.swift,
+				Manager/LiveActivityManager.swift,
+				Model/ArriveAtADAAttributes.swift,
+			);
+			target = EBD4333D2DD3954A00D19A3D /* ArriveAtADAExtension */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -25,8 +77,17 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				EBCD54B32DCE711900073FCB /* Exceptions for "AMplifyV2" folder in "AMplifyV2" target */,
+				EBD4335B2DD396C200D19A3D /* Exceptions for "AMplifyV2" folder in "ArriveAtADAExtension" target */,
 			);
 			path = AMplifyV2;
+			sourceTree = "<group>";
+		};
+		EBD433442DD3954A00D19A3D /* ArriveAtADA */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				EBD433562DD3954B00D19A3D /* Exceptions for "ArriveAtADA" folder in "ArriveAtADAExtension" target */,
+			);
+			path = ArriveAtADA;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -39,6 +100,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EBD4333B2DD3954A00D19A3D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBD433432DD3954A00D19A3D /* SwiftUI.framework in Frameworks */,
+				EBD433412DD3954A00D19A3D /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -46,6 +116,8 @@
 			isa = PBXGroup;
 			children = (
 				EB4614302DC913EB005582D9 /* AMplifyV2 */,
+				EBD433442DD3954A00D19A3D /* ArriveAtADA */,
+				EBD4333F2DD3954A00D19A3D /* Frameworks */,
 				EB46142F2DC913EB005582D9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,8 +126,19 @@
 			isa = PBXGroup;
 			children = (
 				EB46142E2DC913EB005582D9 /* AMplifyV2.app */,
+				EBD4333E2DD3954A00D19A3D /* ArriveAtADAExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		EBD4333F2DD3954A00D19A3D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EBD4335F2DD39BA800D19A3D /* ActivityKit.framework */,
+				EBD433402DD3954A00D19A3D /* WidgetKit.framework */,
+				EBD433422DD3954A00D19A3D /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -68,10 +151,12 @@
 				EB46142A2DC913EB005582D9 /* Sources */,
 				EB46142B2DC913EB005582D9 /* Frameworks */,
 				EB46142C2DC913EB005582D9 /* Resources */,
+				EBD433572DD3954B00D19A3D /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				EBD433512DD3954B00D19A3D /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				EB4614302DC913EB005582D9 /* AMplifyV2 */,
@@ -82,6 +167,28 @@
 			productName = AMplifyV2;
 			productReference = EB46142E2DC913EB005582D9 /* AMplifyV2.app */;
 			productType = "com.apple.product-type.application";
+		};
+		EBD4333D2DD3954A00D19A3D /* ArriveAtADAExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EBD433532DD3954B00D19A3D /* Build configuration list for PBXNativeTarget "ArriveAtADAExtension" */;
+			buildPhases = (
+				EBD4333A2DD3954A00D19A3D /* Sources */,
+				EBD4333B2DD3954A00D19A3D /* Frameworks */,
+				EBD4333C2DD3954A00D19A3D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				EBD433442DD3954A00D19A3D /* ArriveAtADA */,
+			);
+			name = ArriveAtADAExtension;
+			packageProductDependencies = (
+			);
+			productName = ArriveAtADAExtension;
+			productReference = EBD4333E2DD3954A00D19A3D /* ArriveAtADAExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -94,6 +201,9 @@
 				LastUpgradeCheck = 1630;
 				TargetAttributes = {
 					EB46142D2DC913EB005582D9 = {
+						CreatedOnToolsVersion = 16.3;
+					};
+					EBD4333D2DD3954A00D19A3D = {
 						CreatedOnToolsVersion = 16.3;
 					};
 				};
@@ -113,12 +223,20 @@
 			projectRoot = "";
 			targets = (
 				EB46142D2DC913EB005582D9 /* AMplifyV2 */,
+				EBD4333D2DD3954A00D19A3D /* ArriveAtADAExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		EB46142C2DC913EB005582D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBD4333C2DD3954A00D19A3D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -135,7 +253,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EBD4333A2DD3954A00D19A3D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EBD433512DD3954B00D19A3D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EBD4333D2DD3954A00D19A3D /* ArriveAtADAExtension */;
+			targetProxy = EBD433502DD3954B00D19A3D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		EB4614392DC913EC005582D9 /* Debug */ = {
@@ -327,6 +460,60 @@
 			};
 			name = Release;
 		};
+		EBD433542DD3954B00D19A3D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3N5KK4M42R;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ArriveAtADA/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ArriveAtADA;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = AppleDeveloperAcademy.AMplifyV2.ArriveAtADA;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EBD433552DD3954B00D19A3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3N5KK4M42R;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ArriveAtADA/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ArriveAtADA;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = AppleDeveloperAcademy.AMplifyV2.ArriveAtADA;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -344,6 +531,15 @@
 			buildConfigurations = (
 				EB46143C2DC913EC005582D9 /* Debug */,
 				EB46143D2DC913EC005582D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EBD433532DD3954B00D19A3D /* Build configuration list for PBXNativeTarget "ArriveAtADAExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBD433542DD3954B00D19A3D /* Debug */,
+				EBD433552DD3954B00D19A3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

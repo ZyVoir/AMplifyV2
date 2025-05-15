@@ -209,9 +209,12 @@ final class ArriveAtADAViewModel : ObservableObject {
         locationManager.requestPermission()
     }
     
-    func startActivity(locationManager : LocationManager){
-        //TODO: Enable LiveActivity
-       
+    
+    func startActivity(distance: Double) {
+        LiveActivityManager.shared.startActivity(distance: distance, endTime: sessionSelection.time)
+    }
+    
+    func startTracking(locationManager : LocationManager){
         //Populate the start timer, the progress bar indicator and the timer range
         let now : Date = Date()
         timerCountDown = now...( sessionSelection.time > now ? sessionSelection.time : now)
@@ -232,6 +235,9 @@ final class ArriveAtADAViewModel : ObservableObject {
     
     func endActivity(locationManager : LocationManager){
         locationManager.stopUpdatingLocation()
+        
+        // Stop Live Activity
+        LiveActivityManager.shared.endActivity(finalDistance: locationManager.distanceFromAcademy)
         
         timer = nil
         timerCountDown = nil
