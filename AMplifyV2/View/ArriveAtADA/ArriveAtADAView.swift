@@ -16,9 +16,9 @@ struct ArriveAtADAView: View {
             
             switch viewModel.state {
             case .new:
-                arriveAtADASetupView()
+                ArriveAtADASetupView()
             case .ready:
-                arriveAtADAReadyView()
+                ArriveAtADAReadyView()
             case .active:
                 ArriveAtADAActiveView()
             case .completed:

@@ -38,5 +38,37 @@ class IOHelper {
            return String(format: "%.2f", distance)
         }
     }
+    
+    func timeDifferencePhrase(from startDate: Date, to endDate: Date) -> String {
+        let totalSeconds = Int(abs(endDate.timeIntervalSince(startDate)))
+        
+        let hours = totalSeconds / 3600
+        let minutes = (totalSeconds % 3600) / 60
+        let seconds = totalSeconds % 60
+
+        var parts: [String] = []
+
+        if hours > 0 {
+            parts.append("\(hours) hour" + (hours == 1 ? "" : "s"))
+        }
+        if minutes > 0 {
+            parts.append("\(minutes) minute" + (minutes == 1 ? "" : "s"))
+        }
+        if seconds > 0 || parts.isEmpty {
+            parts.append("\(seconds) second" + (seconds == 1 ? "" : "s"))
+        }
+
+        // Formatting: "X hours, Y minutes and Z seconds"
+        switch parts.count {
+        case 1:
+            return parts[0]
+        case 2:
+            return parts.joined(separator: " and ")
+        default:
+            let last = parts.removeLast()
+            return parts.joined(separator: ", ") + " and " + last
+        }
+    }
+
 }
 
