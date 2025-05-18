@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct arriveAtADASetupView : View {
+struct ArriveAtADASetupView : View {
     
     @EnvironmentObject var viewModel: ArriveAtADAViewModel
     
@@ -55,4 +55,5 @@ struct arriveAtADASetupView : View {
 #Preview {
     HomeView()
         .environmentObject(HomeViewModel())
+        .environmentObject(LocationManager())
 }

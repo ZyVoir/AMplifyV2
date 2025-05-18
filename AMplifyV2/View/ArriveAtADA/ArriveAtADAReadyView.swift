@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct arriveAtADAReadyView : View {
+struct ArriveAtADAReadyView : View {
     
     @EnvironmentObject var viewModel: ArriveAtADAViewModel
     @EnvironmentObject var locationManager : LocationManager

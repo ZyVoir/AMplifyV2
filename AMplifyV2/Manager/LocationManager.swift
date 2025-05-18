@@ -10,7 +10,6 @@ import CoreLocation
 
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
-    
     private let manager = CLLocationManager()
     @Published var userLocation: CLLocationCoordinate2D?
     
