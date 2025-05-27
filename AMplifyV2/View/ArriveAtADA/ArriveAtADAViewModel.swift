@@ -51,57 +51,6 @@ enum ArriveAtADAAlertState {
     }
 }
 
-enum LearnerSessionType {
-    case morning
-    case afternoon
-    
-    var title : String {
-        switch self {
-        case .morning:
-            return "Morning"
-        case .afternoon:
-            return "Afternoon"
-        }
-    }
-   
-    var time : Date {
-        switch self {
-        case .morning:
-            return IOHelper.shared.parseStringToDate("08:00:00")
-        case .afternoon:
-            return IOHelper.shared.parseStringToDate("13:00:00")
-        }
-    }
-    
-    var icon : String {
-        switch self {
-        case .morning:
-            return Icons.morningSession.rawValue
-        case .afternoon:
-            return Icons.afternoonSession.rawValue
-        }
-    }
-    
-    var bg : LinearGradient {
-        switch self {
-        case .morning:
-            return LinearGradient.morningSession
-        case .afternoon:
-            return LinearGradient.afternoonSession
-        }
-    }
-    
-    init(value rawValue : String) {
-        switch rawValue {
-        case "Morning":
-            self = .morning
-        case "Afternoon":
-            self = .afternoon
-        default:
-            self = .morning
-        }
-    }
-}
 
 enum PriorReminder : Hashable, CaseIterable {
     case oneHour
@@ -145,7 +94,6 @@ final class ArriveAtADAViewModel : ObservableObject {
             UserDefaults.standard.set(state.value, forKey: "ArriveAtADAState")
         }
     }
-    
     // alert
     @Published var isShowAlert : Bool = false
     @Published private(set) var alertState : ArriveAtADAAlertState

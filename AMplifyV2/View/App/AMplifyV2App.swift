@@ -11,7 +11,7 @@ import SwiftUI
 struct AMplifyV2App: App {
     @StateObject private var locationManager : LocationManager = LocationManager()
     @StateObject private var notificationManager : NotificationManager = NotificationManager()
-    
+    var watchConnect = iOSToWatchConnectorManager()
     @AppStorage("lastCheckedDate") private var lastCheckedDate: String = ""
     
     init() {
@@ -23,6 +23,7 @@ struct AMplifyV2App: App {
             SplashScreenView()
                 .environmentObject(locationManager)
                 .environmentObject(notificationManager)
+                .environment(watchConnect)
                 .onAppear {
                     notificationManager.requestNotificationPermission()
                 }

@@ -11,6 +11,9 @@ struct ArriveAtADAReadyView : View {
     
     @EnvironmentObject var viewModel: ArriveAtADAViewModel
     @EnvironmentObject var locationManager : LocationManager
+    
+    @Environment(iOSToWatchConnectorManager.self) var connectorManager
+    
     var body: some View {
         VStack (spacing : 20) {
             
@@ -50,7 +53,7 @@ struct ArriveAtADAReadyView : View {
                     // TODO: Start an activity with widget extension (activityKit)
                     viewModel.startTracking(locationManager: locationManager)
                     viewModel.startActivity(distance: locationManager.distanceFromAcademy)
-                
+                    
                 } label: {
                     Text("Start Activity")
                         .font(.system(size: 16, weight: .semibold))
@@ -98,4 +101,5 @@ struct ArriveAtADAReadyView : View {
         .environmentObject(HomeViewModel())
         .environmentObject(LocationManager())
         .environmentObject(NotificationManager())
+        .environment(iOSToWatchConnectorManager())
 }
